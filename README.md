@@ -1,14 +1,14 @@
-# <README Template>
+# GraphQL React Event Booking App
 
 Written by Kris Lafrance
 
-Uses HTML5, Javascript, Bootstrap
+Uses Javascript, GraphQL, MongoDB (Mongoose), React
 
 # Features
 
-* 
+-
 
 # Run
 
-* `git clone https://github.com/Ero6067/<EXAMPLE>.git`
-* open index.html
+- `git clone https://github.com/Ero6067/graphql-react-event-booking.git`
+- open index.html
