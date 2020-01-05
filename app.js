@@ -5,8 +5,8 @@ const { buildSchema } = require("graphql");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
-const Event = require("./models/events.js");
-const User = require("./models/user.js");
+const Event = require("./models/event");
+const User = require("./models/user");
 
 const app = express();
 
@@ -61,7 +61,7 @@ app.use(
 				return Event.find()
 					.then(events => {
 						return events.map(event => {
-							return { ...event._doc };
+							return { ...event._doc, _id: event.id };
 						});
 					})
 					.catch(err => {
@@ -87,7 +87,7 @@ app.use(
 						if (!user) {
 							throw new Error("User not found.");
 						}
-						user.createdEvent.push(event);
+						user.createdEvents.push(event);
 						return user.save();
 					})
 					.then(result => {
