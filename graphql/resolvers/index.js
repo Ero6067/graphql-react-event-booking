@@ -20,16 +20,27 @@ const events = async eventIds => {
 	}
 };
 
+const singleEvent = async eventId => {
+	try {
+		const event = await Event.findById(eventId);
+		return {
+			...event._doc,
+			_id: event.id,
+			creator: user.bind(this, event.creator)
+		};
+	} catch (err) {
+		throw err;
+	}
+};
+
 const user = async userId => {
 	try {
-		const user = await User.findById(userId).then(user => {
-			return {
-				...user._doc,
-				_id: user.id,
-
-				createdEvents: events.bind(this, user._doc.createdEvents)
-			};
-		});
+		const user = await User.findById(userId);
+		return {
+			...user._doc,
+			_id: user.id,
+			createdEvents: events.bind(this, user._doc.createdEvents)
+		};
 	} catch (err) {
 		throw err;
 	}
@@ -37,8 +48,8 @@ const user = async userId => {
 
 module.exports = {
 	events: async () => {
-		const events = await Event.find();
 		try {
+			const events = await Event.find();
 			return events.map(event => {
 				return {
 					...event._doc,
@@ -58,8 +69,10 @@ module.exports = {
 				return {
 					...booking._doc,
 					_id: booking.id,
+					user: user.bind(this, booking._doc.user),
+					event: singleEvent.bind(this, booking._doc.event),
 					createdAt: new Date(booking._doc.createdAt).toISOString(),
-					updatedAt: new Date(booking._doc.createdAt).toISOString()
+					updatedAt: new Date(booking._doc.updatedAt).toISOString()
 				};
 			});
 		} catch (err) {
@@ -109,7 +122,7 @@ module.exports = {
 				email: args.userInput.email,
 				password: hashedPassword
 			});
-			const resuit = await user.save();
+			const result = await user.save();
 
 			return { ...result._doc, password: null, _id: result.id };
 		} catch (err) {
@@ -126,8 +139,10 @@ module.exports = {
 		return {
 			...result._doc,
 			_id: result.id,
+			user: user.bind(this, booking._doc.user),
+			event: singleEvent.bind(this, booking._doc.event),
 			createdAt: new Date(result._doc.createdAt).toISOString(),
-			updatedAt: new Date(result._doc.createdAt).toISOString()
+			updatedAt: new Date(result._doc.updatedAt).toISOString()
 		};
 	}
 };
