@@ -11,3 +11,7 @@ Uses Javascript, GraphQL, MongoDB (Mongoose), React
 # Run
 
 - `git clone https://github.com/Ero6067/graphql-react-event-booking.git`
+  Install dependancies
+- `npm install`
+  Run App
+- `npm start`
