@@ -6,7 +6,8 @@ Uses Javascript, GraphQL, MongoDB (Mongoose), React
 
 # Features
 
-- Technologies: jsonwebtoken, bcrypt
+- Backend Technologies: jsonwebtoken, bcrypt
+- Frontend Technologies: React Router (Dom)
 
 # Run
 
