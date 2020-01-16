@@ -6,7 +6,7 @@ Uses Javascript, GraphQL, MongoDB (Mongoose), React
 
 # Features
 
--
+- Technologies: jsonwebtoken, bcrypt
 
 # Run
 
