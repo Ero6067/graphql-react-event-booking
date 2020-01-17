@@ -2,7 +2,7 @@
 
 Written by Kris Lafrance
 
-Uses Javascript, GraphQL, MongoDB (Mongoose), React
+Uses Javascript, GraphQL, MongoDB (Mongoose), React, Node.js
 
 # Features
 
